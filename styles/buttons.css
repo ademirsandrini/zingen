@@ -1,22 +1,23 @@
 .btn {
     --btn-bg-color: var(--text-color-primary);
     --btn-color: var(--bg-color);
-    border: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
 
+    border: 0;
     border-radius: .5rem;
 
     font: var(--fw-md) var(--fs-base)/1.5rem var(--ff-sans);
 
     cursor: pointer;
 
-    transition: background 0.3s ease, color 0.3s ease;
     background: var(--btn-bg-color);
     color: var(--btn-color);
+
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn:hover {
@@ -49,20 +50,41 @@
 .btn[aria-label] {
     position: relative;
 
+    border: 0;
+    background: transparent;
+
     &::before {
         content: "";
-        border-radius: inherit;
-        inset: 0.09375rem;
+
         position: absolute;
-        background-color: var(--bg-color);
+        inset: 0;
+
+        border-radius: inherit;
+        padding: 1px;
+
+        background: var(--btn-bg-color);
+
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
     }
 
     &::after {
         content: attr(aria-label);
+
         position: relative;
+        z-index: 1;
+
         background: var(--btn-bg-color);
-        -webkit-background-clip: text;
         background-clip: text;
+        -webkit-background-clip: text;
+
         color: transparent;
     }
 }
