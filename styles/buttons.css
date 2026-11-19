@@ -1,103 +1,103 @@
 .btn {
-    --btn-bg-color: var(--text-color-primary);
-    --btn-color: var(--bg-color);
+  --btn-bg-color: var(--text-color-primary);
+  --btn-color: var(--bg-color);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
 
-    border: 0;
-    border-radius: .5rem;
+  border: 0;
+  border-radius: 0.5rem;
 
-    font: var(--fw-md) var(--fs-base)/1.5rem var(--ff-sans);
+  font: var(--fw-md) var(--fs-base)/1.5rem var(--ff-sans);
 
-    cursor: pointer;
+  cursor: pointer;
 
-    background: var(--btn-bg-color);
-    color: var(--btn-color);
+  background: var(--btn-bg-color);
+  color: var(--btn-color);
 
-    transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn:hover {
-    --btn-bg-color: linear-gradient(
-        90deg,
-        var(--brand-color-secondary) 0%,
-        var(--brand-color-primary) 100%
-    );
-    --btn-color: var(--surface-color);
+  --btn-bg-color: linear-gradient(
+    90deg,
+    var(--brand-color-secondary) 0%,
+    var(--brand-color-primary) 100%
+  );
+  --btn-color: var(--surface-color);
 
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    color: var(--btn-color);
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: var(--btn-color);
 }
 
 .btn-sm {
-    padding: .5rem 1rem;
-    font-size: var(--fs-sm);
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-sm);
 }
 
 .btn-md {
-    padding: .75rem 1.5rem;
-    font-size: var(--fs-base);
+  padding: 0.75rem 1.5rem;
+  font-size: var(--fs-base);
 }
 
 .btn-lg {
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
 }
 
 .btn[aria-label] {
+  position: relative;
+
+  border: 0;
+  background: transparent;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+    padding: 1px;
+
+    background: var(--btn-bg-color);
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  &::after {
+    content: attr(aria-label);
+
     position: relative;
+    z-index: 1;
 
-    border: 0;
-    background: transparent;
+    background: var(--btn-bg-color);
+    background-clip: text;
+    -webkit-background-clip: text;
 
-    &::before {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        border-radius: inherit;
-        padding: 1px;
-
-        background: var(--btn-bg-color);
-
-        -webkit-mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-
-        mask:
-            linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-    }
-
-    &::after {
-        content: attr(aria-label);
-
-        position: relative;
-        z-index: 1;
-
-        background: var(--btn-bg-color);
-        background-clip: text;
-        -webkit-background-clip: text;
-
-        color: transparent;
-    }
+    color: transparent;
+  }
 }
 
 @media (min-width: 80em) {
-    .btn-sm {
-        padding: .75rem 1.5rem;
-        font-size: var(--fs-base);
-    }
+  .btn-sm {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--fs-base);
+  }
 
-    .btn-md {
-        padding: 1rem 2rem;
-        font-size: 1.125rem;
-    }
+  .btn-md {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
 }
